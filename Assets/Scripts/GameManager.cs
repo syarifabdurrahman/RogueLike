@@ -5,13 +5,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance=null;
     public BoardManager BoardScript;
 
     private int Level = 3;
 
-    // Start is called before the first frame update
     void Awake()
     {
+        if (instance=null)
+        {
+            instance = this;
+        }
+        else if (instance!=this)
+        {
+            Destroy(gameObject);
+        }
         BoardScript = GetComponent<BoardManager>();
         InitGame();
     }
